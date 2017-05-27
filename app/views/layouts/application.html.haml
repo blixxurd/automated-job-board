@@ -9,7 +9,14 @@
     %link{:href => "https://fonts.googleapis.com/css?family=Lato:300,400,400i,700", :rel => "stylesheet"}/
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+      ga('create', 'UA-98839148-2', 'auto');
+      ga('send', 'pageview');
   %body
     #page.mm-page.mm-slideout
       = render "pages/_includes/header"
