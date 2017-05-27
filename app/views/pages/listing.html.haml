@@ -27,15 +27,17 @@
             <!-- AddToAny END -->
             .entry-content
               %h2 Job Description
-              - desc_html Nokogiri::XML.fragment(markdown @listing.job_description)
-              - desc_html.search('.//img').remove
-              = desc_html.to_html
+              - desc_html = Nokogiri::HTML(markdown @listing.job_description)
+              - desc_html.search('img').each do |img|
+                - img.remove
+              = desc_html.to_html.html_safe
               %h2 How to Apply
-              - apply_html Nokogiri::HTML(markdown @listing.how_to_apply)
+              - apply_html = Nokogiri::HTML(markdown @listing.how_to_apply)
               - apply_html.css("a").each do |link|
+                - link.content = "Visit This Link to Apply Now"
                 - link.attributes["href"].value = "http://remotedigitaljobs.com/redirect?url=#{CGI.escape link.attributes["href"].value}"
 
-              = apply_html.to_html
+              = apply_html.to_html.html_safe
 
           %a.btn.btn-block.btn-apply-content.apply-modal{:href => "#apply"} Apply for this job
         .content-wrap-footer

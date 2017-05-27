@@ -16,4 +16,9 @@
 - if @listing
   #apply.zoom-anim-dialog.mfp-hide
     %h2 How to Apply
-    = markdown @listing.how_to_apply
+    - apply_html = Nokogiri::HTML(markdown @listing.how_to_apply)
+    - apply_html.css("a").each do |link|
+      - link.content = "Visit This Link to Apply Now"
+      - link.attributes["href"].value = "http://remotedigitaljobs.com/redirect?url=#{CGI.escape link.attributes["href"].value}"
+
+    = apply_html.to_html.html_safe
