@@ -58,7 +58,7 @@ class WebScraper
       end
     end
 
-    return links_array
+    write_json(links_array)
   end
 
   def we_work_remotely(category)
@@ -69,7 +69,7 @@ class WebScraper
 
   end
 
-  def remoteco(category)
+  def remoteok(category)
 
   end
 
@@ -98,7 +98,7 @@ class WebScraper
           company: result["company"],
           location: result["location_base"],
           source_id: l["_id"]
-      });
+      })
     end
 
     return results

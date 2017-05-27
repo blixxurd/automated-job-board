@@ -11,9 +11,9 @@ every 2.hours do
   JobListing.generate_from("workingnomads")
 end
 
-every 12.hours do
-  JobListing.generate_from("craigslist")
-end
+# every 12.hours do
+#   JobListing.generate_from("craigslist")
+# end
 
 
 # Learn more: http://github.com/javan/whenever
