@@ -1,6 +1,6 @@
 class WebScraper
   #Reqs
-  require 'HTTParty'
+  require 'httparty'
   require 'open-uri'
   require 'Nokogiri'
   require 'JSON'
