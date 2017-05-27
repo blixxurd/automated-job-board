@@ -2,8 +2,8 @@ class WebScraper
   #Reqs
   require 'httparty'
   require 'open-uri'
-  require 'Nokogiri'
-  require 'JSON'
+  require 'nokogiri'
+  require 'json'
   # require 'Pry'
   require 'csv'
 
