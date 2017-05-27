@@ -3,10 +3,7 @@
   "description": "Web Management",
   "scripts": {
     "dokku": {
-      "postdeploy": [
-        "bundle exec rake db:migrate",
-        "whenever --update-crontab"
-      ]
+      "postdeploy":"bundle exec rake db:migrate"
     }
   }
 }
