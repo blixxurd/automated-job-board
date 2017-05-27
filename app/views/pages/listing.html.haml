@@ -1,0 +1,70 @@
+.page-hero{:style => "background-image: url(#{asset_path('hero-bg')});"}
+  .container
+    .row
+      .col-xs-12
+        .page-hero-content
+          %h1.page-title #{@listing.job_title}
+          .page-hero-details
+            %span.entry-company #{@listing.company}
+            %span.entry-location Headquartered in #{@listing.location}
+%main.main.main-elevated
+  .container
+    .row
+      .col-xl-9.col-lg-8.col-xs-12
+        .content-wrap
+          %article.entry
+            <!-- AddToAny BEGIN -->
+            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+            <a class="a2a_button_twitter"></a>
+            <a class="a2a_button_facebook"></a>
+            <a class="a2a_button_reddit"></a>
+            <a class="a2a_button_linkedin"></a>
+            <a class="a2a_button_pinterest"></a>
+            <a class="a2a_button_email"></a>
+            </div>
+            <script async src="https://static.addtoany.com/menu/page.js"></script>
+            <!-- AddToAny END -->
+            .entry-content
+              %h2 Job Description
+              = markdown @listing.job_description
+              %h2 How to Apply
+              = markdown @listing.how_to_apply
+          %a.btn.btn-block.btn-apply-content.apply-modal{:href => "#apply"} Apply for this job
+        .content-wrap-footer
+          -# .row
+          -#   -# .col-md-8.col-xs-12
+          -#   -#   .entry-sharing
+          -#   -#     Share this Job:
+          -#   -#     %a.entry-share.entry-share-facebook{:href => ""} Facebook
+          -#   -#     %a.entry-share.entry-share-twitter{:href => ""} Twitter
+          -#   -#     %a.entry-share.entry-share-google-plus{:href => ""} Google+
+          -#   -#     %a.entry-share.entry-share-linkedin{:href => ""} LinkedIn
+          -#   -#     %a.entry-share.entry-share-email{:href => ""} Email
+          -#   -# .col-md-4.col-xs-12.text-right
+          -#   -#   %a{:href => "/contact"} Report this listing
+      .col-xl-3.col-lg-4.col-xs-12
+        .sidebar
+          %aside.widget.widget_ci-apply-button-widget
+            %a.btn.btn-block.apply-modal{:href => "#apply"}
+              Apply for this job
+          %aside.widget.widget_ci-related-items
+            %h3.widget-title Latest Jobs
+            - @jobs.each do |listing|
+              .item-listing
+                .list-item.list-item-sm
+                  .list-item-main-info
+                    %p.list-item-title
+                      %a{:href => listing.slug} #{listing.job_title}
+                    .list-item-meta
+                      %span.list-item-company #{listing.company}
+          -# %aside.widget.widget_ci-callout-widget
+          -#   .callout-wrapper
+          -#     %p
+          -#       %strong Find the right pros for your business. Post a new job today
+          -#     %p.text-secondary
+          -#       From just
+          -#       %strong $199
+          -#       for
+          -#       %strong 60 days
+          -#     %a.btn.btn-round.btn-transparent{:href => "/submit"} Post a new job

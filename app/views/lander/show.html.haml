@@ -1,0 +1,183 @@
+- og_locker = @page.og_ads_locker_id || "9dc0b8878b14e27cd07e56c919185658"
+
+- flash.each do |key, value|
+  - if key=="completed"
+    %noscript
+      %meta{:content => "0;url=https://www.hostedfiles.net/contentlockers/noscript.php", "http-equiv" => "refresh"}/
+    :javascript
+      var ogblock=true;
+    %script{:src => "https://www.hostedfiles.net/contentlockers/load.php?id=#{og_locker}", :type => "text/javascript"}
+    :javascript
+      if(ogblock) window.location.href = "https://www.hostedfiles.net/contentlockers/adblock.php";
+
+- primary = @page.color3
+- c1 = @page.color1
+- c2 = @page.color2
+
+:ruby
+  def slugify(str)
+    str.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+  end
+
+:scss
+  a.view-more-link {
+    position:absolute;
+    bottom: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    right: 30px;
+    color: #FFF;
+  }
+  a.view-more-mobile-link {
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFF;
+    margin:0 auto;
+    display:block;
+    margin-top: 30px;
+  }
+  .bg-primary {
+    background: #{primary};
+    background: -webkit-linear-gradient(#{primary}, darken(#{primary}, 4%));
+    background: linear-gradient(#{primary}, darken(#{primary}, 4%));
+  }
+  .btn-primary {
+    background: #{primary};
+    border-color: #{primary};
+    &:hover {
+      background: darken(#{primary}, 10%);
+      border-color: darken(#{primary}, 10%);
+    }
+  }
+  .navbar-default.affix .navbar-header .navbar-brand:hover, .navbar-default.affix .navbar-header .navbar-brand:focus, .navbar-default.affix .nav > li > a, .navbar-default.affix .nav > li > a:focus {
+    color: #{primary} !important;
+  }
+  .btn-outline:hover,
+  .btn-outline:focus,
+  .btn-outline:active,
+  .btn-outline.active {
+    color: white;
+    background-color: #{primary};
+    border-color: #{primary};
+  }
+
+  section.features .feature-item i {
+      font-size: 80px;
+      background: -webkit-linear-gradient(to left, #{c1}, #{c2});
+      background: -webkit-linear-gradient(right, #{c1}, #{c2});
+      background: linear-gradient(to left, #{c1}, #{c2});
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  header {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    background: url(/lander/img/bg-pattern.png), #{c1};
+    background: url(/lander/img/bg-pattern.png), -webkit-linear-gradient(to left, #{c1}, #{c2});
+    background: url(/lander/img/bg-pattern.png), -webkit-linear-gradient(right, #{c1}, #{c2});
+    background: url(/lander/img/bg-pattern.png), linear-gradient(to left, #{c1}, #{c2});
+    color: white;
+  }
+
+:css
+  #{@page.custom_css || ""}
+
+%body#page-top
+  %nav#mainNav.navbar.navbar-default.navbar-fixed-top
+    .container
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          Menu
+          %i.fa.fa-bars
+        %a.navbar-brand.page-scroll{:href => "#page-top"}= @page.name
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a.page-scroll{:href => "##{slugify(@page.section_1_name)}"} #{@page.section_1_name}
+          - if @page.show_section_2
+            %li
+              %a.page-scroll{:href => "#features"} More Info
+          %li
+            %a.lead-capture.alt-color{:href => "javascript:;"}= @page.hero_button_text
+      / /.navbar-collapse
+    / /.container-fluid
+  %header
+    .container
+      .row
+        .col-sm-7.col-lg-8
+          .header-content
+            .header-content-inner
+              %h1= @page.hero_text
+              %a.btn.btn-outline.btn-xl.lead-capture{:href => "javascript:;"}= @page.hero_button_text
+            %a.page-scroll.view-more-link.hidden-xs{:href => "##{slugify(@page.section_1_name)}"}
+              View More Info
+              %i.fa.fa-chevron-down
+            %a.page-scroll.view-more-mobile-link.visible-xs{:href => "##{slugify(@page.section_1_name)}"}
+              View More Info
+              %i.fa.fa-chevron-down
+        .col-sm-5.col-lg-4
+          .device-container
+            .device-mockup{:class=>@page.device_string.present? ? @page.device_string : "iphone6_plus portrait white"}
+              .device
+                .screen
+                  / Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
+                  %img.img-responsive{:alt => "", :src => @page.mockup_image.url}/
+                .button
+                  / You can hook the "home button" to some JavaScript events or just remove it
+  %section.download.bg-primary.text-center{:id=>slugify(@page.section_1_name)}
+    .container
+      .row
+        .col-md-8.col-md-offset-2
+          %h2.section-heading= @page.section_1_name
+          %p=@page.section_1_text
+          =@page.section_1_custom_html.html_safe
+  - if @page.show_section_2
+    %section#features.features
+      .container
+        .row
+          .col-lg-12.text-center
+            .section-heading
+              %h2=@page.section_2_header
+              %p.text-muted=@page.section_2_subheader
+              %hr/
+        .row
+          .col-md-4
+            .device-container
+              .device-mockup{:class=>@page.device_string.present? ? @page.device_string : "iphone6_plus portrait white"}
+                .device
+                  .screen
+                    / Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
+                    %img.img-responsive{:alt => "", :src => @page.mockup_image.url}/
+                  .button
+                    / You can hook the "home button" to some JavaScript events or just remove it
+          .col-md-8
+            .container-fluid
+              .row
+                - [1,2,3,4].each do |i|
+                  .col-md-6
+                    .feature-item
+                      =@page["section_2_block_#{i}_html"].html_safe
+            .row.text-center
+              %a.btn.btn-xl.btn-primary.lead-capture{:href=>"javascript:;"}
+                = @page.hero_button_text
+  %footer
+    .container
+      %p &copy; #{Time.current.year} #{@page.name}
+
+/ Modal
+#leadModal.modal.fade{"aria-labelledby" => "leadModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        %p.text-center
+          #{@page.email_popup_message || "Please enter your email to proceed."}
+        %form{:action=>"/submit/lead", :method=>"post"}
+          .form-group{:style=>"text-align:center;"}
+            %input{:type => "hidden", :name=>"authenticity_token", :value=>form_authenticity_token}/
+            %input.form-control{:type=>"email", :placeholder=>"you@example.com", :name=>"lead[email]", :required=>true, :style=>"max-width:300px; margin:0 auto;"}
+            %input.btn.btn-primary{:type=>"submit", :value=>"Submit", :style=>"padding: 10px 20px; margin-top:20px;"}

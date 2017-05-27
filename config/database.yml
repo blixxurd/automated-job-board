@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: job_board_development
+  encoding: utf8
+  host: localhost
+  username: postgres
+  password:
+
+production:
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %> #This is the environment variable created by our Dokku command earlier
+  encoding: unicode
+  pool: 5

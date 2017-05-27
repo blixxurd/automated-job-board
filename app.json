@@ -1,0 +1,9 @@
+{
+  "name": "Website Management System",
+  "description": "Web Management",
+  "scripts": {
+    "dokku": {
+      "postdeploy": "whenever && bundle exec rake db:migrate && whenever --update-crontab"
+    }
+  }
+}

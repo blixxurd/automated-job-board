@@ -1,0 +1,19 @@
+/ form itself
+#emailReg.zoom-anim-dialog.mfp-hide
+  %form#register-email
+    %h2 Weekly Job Alerts
+    %fieldset{:style => "border:0;"}
+      %p
+        Join our weekly mailing list, and get a fresh weekly batch of jobs sent to your email every week.
+      %br
+      .text-ceter
+        %input#email{:name => "email", :placeholder => "Enter your Email Address", :required => "", :type => "email"}/
+        %br
+        %br
+        %input{:type=>"submit", :value=>"Join Mailing List"}
+
+
+- if @listing
+  #apply.zoom-anim-dialog.mfp-hide
+    %h2 How to Apply
+    = markdown @listing.how_to_apply

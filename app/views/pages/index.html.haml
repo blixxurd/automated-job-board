@@ -1,0 +1,49 @@
+= render "pages/_includes/hero"
+%main.main
+  .container
+    .row
+      .col-xs-12
+        -# %h3.section-title
+        -#   %b 405
+        -#   Jobs Found
+        .item-listing
+          -#     -@jobs.each do |listing|
+          -#       .listing
+          -#         .medium-6.column
+          -#           <a href="/job/#{listing.slug}">#{listing.job_title}</a> @ #{listing.company}
+          -#         .medium-6.column.text-right
+          -#           #{listing.created_at}
+          -@jobs.each do |listing|
+            .list-item{:class=>listing.promoted ? 'list-item-featured' : ''}
+              .list-item-main-info
+                -if listing.promoted
+                  %p.list-item-title-eyebrow Featured
+                %p.list-item-title
+                  %a{:href => "/job/#{listing.slug}"} #{listing.job_title}
+                .list-item-meta
+                  %a.list-item-tag.item-badge{:href => "/job/#{listing.slug}", :class=>listing.promoted ? 'job-type-part-time' : 'job-type-contract'} #{listing.company}
+                  -# %span.list-item-company Alpha, Inc
+              .list-item-secondary-info
+                %p.list-item-location HQ: #{listing.location}
+                %time.list-item-time{:datetime => listing.created_at.strftime("%Y-%m-%d")}
+                  Added on #{listing.created_at.strftime("%B %d")}
+
+          .list-item-secondary-wrap
+            %a.btn.btn-round.btn-white.btn-transparent{:href => ""} Load More Jobs
+
+-# .list-item.list-item-callout
+-#   .list-item-main-info
+-#     %p.list-item-title Create a job alert
+-#     .list-item-meta
+-#       %span.list-item-company Get new jobs like these by email
+-#   .list-item-secondary-info
+-#     %a.btn.btn-round.btn-white.btn-transparent{:href => "index.html#"} Activate Alert
+
+-# %section{:class=>"job-list"}
+-#   .row
+-#     -@jobs.each do |listing|
+-#       .listing
+-#         .medium-6.column
+-#           <a href="/job/#{listing.slug}">#{listing.job_title}</a> @ #{listing.company}
+-#         .medium-6.column.text-right
+-#           #{listing.created_at}

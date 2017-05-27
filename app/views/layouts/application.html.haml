@@ -1,0 +1,22 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Remote Jobs
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Lato:300,400,400i,700", :rel => "stylesheet"}/
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+  %body
+    #page.mm-page.mm-slideout
+      = render "pages/_includes/header"
+      = yield
+
+      = render "pages/_includes/footer"
+
+    = render "pages/_includes/modals"
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    #mm-blocker.mm-slideout

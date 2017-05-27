@@ -1,0 +1,81 @@
+%header
+  .row
+    .title
+      %span
+        %i.fa.fa-empire
+      %span.red Epic
+      %span.blue Downloads
+%section.dl-wrap
+  .download-page
+    .file-details
+      %h1=@dl.filename
+      %div
+        %i.fa.fa-cloud-download
+      %table
+        %tbody
+          %tr
+            %td Name
+            %td=@dl.filename
+          %tr
+            %td Description
+            %td=@dl.description
+          %tr
+            %td Size
+            %td=@dl.size
+          %tr
+            %td Downloads
+            %td=@dl.downloads
+    .steps
+      .email-submit.step1
+        %form{:action => ""}
+      #ogCaptcha.captcha.final-step.success.callout
+        %p Please verify you aren't a robot to download your file.
+        .captcha-og{"data-captcha-enable" => "true"}
+      .download-wrapper
+        %a.button.rounded.large{:href => "#"}
+          %i.fa.fa-download
+          Download Now
+        .loader
+          Please wait - fetching download.
+          .progress
+            %span.progress-meter.animate{:style => "width: 25%"}
+              %p.progress-meter-text 25%
+%hr/
+%footer
+  .row
+    %h4.text-center Comments
+
+    .alert.callout.info{"data-closable" => ""}
+      %p Only people who have downloaded the file can comment.
+    .comments
+
+      .comment-wrap
+        .photo
+          .avatar{:style => "background-image: url('https://static.giantbomb.com/uploads/square_small/0/469/608406-johnny_bravo_full_color__medium.jpeg')"}
+        .comment-block
+          %p.comment-text= @dl.comment1
+          .bottom-comment
+            .comment-date 2 hours ago
+            %ul.comment-actions
+              %li.complain Complain
+              %li.reply Reply
+      .comment-wrap
+        .photo
+          .avatar{:style => "background-image: url('https://pbs.twimg.com/profile_images/716059387735965696/_qYqY6BK.jpg')"}
+        .comment-block
+          %p.comment-text=@dl.comment2
+          .bottom-comment
+            .comment-date 6 hours ago
+            %ul.comment-actions
+              %li.complain Complain
+              %li.reply Reply
+      .comment-wrap
+        .photo
+          .avatar{:style => "background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/felipenogs/128.jpg')"}
+        .comment-block
+          %p.comment-text= @dl.comment3
+          .bottom-comment
+            .comment-date 14 hours ago
+            %ul.comment-actions
+              %li.complain Complain
+              %li.reply Reply
