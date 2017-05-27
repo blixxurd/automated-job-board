@@ -1,5 +1,3 @@
-require "#{Rails.root}/lib/web_scraper"
-
 class JobListing < ActiveRecord::Base
   validates_uniqueness_of :source_id, :allow_nil => true, :allow_blank => true
 
