@@ -2,9 +2,12 @@ class JobListing < ActiveRecord::Base
   validates_uniqueness_of :source_id, :allow_nil => true, :allow_blank => true
 
   before_create :generate_details
+  after_save :notify_the_world!
 
   def generate_details
     self.slug = self.job_title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '') + "-" + (self.created_at.to_i/10000).to_s
+    bitly_obj = Bitly.client.shorten("https://remotedigitaljobs.com/job/" + self.slug)
+    self.bitly = bitly_obj.jmp_url
   end
 
   def activate!
@@ -25,6 +28,15 @@ class JobListing < ActiveRecord::Base
       results.each do |r|
         self.create(r)
       end
+    end
+  end
+
+  def notify_the_world!
+    if self.active && !self.tweeted
+      @twitter = TwitterBandit.new()
+      tweet = "Hiring remote #{self.job_title} @ #{self.bitly} - #remotejobs #remotework #jobs #digitalmarketing"
+      @twitter.tweet(tweet.length > 140 ? tweet[0,147]+"..." : tweet)
+      self.update({tweeted:true})
     end
   end
 

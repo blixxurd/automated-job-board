@@ -9,7 +9,7 @@ xml.rss :version => "2.0" do
     xml.language "en"
 
     for job in @jobs
-      link = "https://remotedigitaljobs.com/job/" + job.slug
+      link = Bitly.client.shorten("https://remotedigitaljobs.com/job/" + job.slug)
       xml.item do
         if job.job_title
           xml.title job.job_title
@@ -17,7 +17,7 @@ xml.rss :version => "2.0" do
           xml.title ""
         end
         xml.pubDate job.created_at.to_s(:rfc822)
-        xml.link link
+        xml.link link.jmp_url
         xml.guid job.id
         xml.description "A new job listing for a #{job.job_title} with #{job.company}. Learn more, and apply at #{link}."
       end

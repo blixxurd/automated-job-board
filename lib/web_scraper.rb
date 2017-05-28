@@ -65,6 +65,10 @@ class WebScraper
 
   end
 
+  def remoteworkhub(category)
+
+  end
+
   def remoteok(category)
 
   end

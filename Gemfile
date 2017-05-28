@@ -39,6 +39,8 @@ gem 'jbuilder', '~> 2.5'
 #Needed Items
 gem "paperclip", "~> 5.0.0"
 gem "haml-rails"
+gem 'bitly'
+gem 'twitter'
 
 #ActiveAdmin
 gem 'activeadmin'
