@@ -15,8 +15,18 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Job Listings" do
           ul do
-            JobListing.where(active: true).limit(5).map do |listing|
+            JobListing.where(active: true).limit(10).map do |listing|
               li link_to(listing.job_title, admin_job_listing_path(listing))
+            end
+          end
+        end
+      end
+
+      column do
+        panel "Recent Email Subs" do
+          ul do
+            Lead.all.limit(10).map do |lead|
+              li link_to(lead.email, admin_lead_path(lead))
             end
           end
         end

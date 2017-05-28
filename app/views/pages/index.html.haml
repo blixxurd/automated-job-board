@@ -1,8 +1,13 @@
 = render "pages/_includes/hero"
+
 %main.main
   .container
     .row
       .col-xs-12
+        - flash.each do |key, value|
+          .box-message{:class=>"box-message-#{key}"}
+            .box-message-content
+              %p #{value}
         -# %h3.section-title
         -#   %b 405
         -#   Jobs Found

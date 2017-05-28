@@ -3,13 +3,13 @@
 xml.instruct! :xml, :version => "1.0"
 xml.rss :version => "2.0" do
   xml.channel do
-    xml.title "Remote Social Media Jobs"
-    xml.description "Remote Social Media Jobs listings."
-    xml.link "https://mywebsite.com/"
+    xml.title "Remote Digital Marketing Jobs"
+    xml.description "Remote Digital Marketing job listings."
+    xml.link "https://remotedigitaljobs.com/"
     xml.language "en"
 
     for job in @jobs
-      link = "https://mywebsite.com/job/" + job.slug
+      link = "https://remotedigitaljobs.com/job/" + job.slug
       xml.item do
         if job.job_title
           xml.title job.job_title
