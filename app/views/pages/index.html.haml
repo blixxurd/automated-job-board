@@ -33,9 +33,15 @@
                 %time.list-item-time{:datetime => listing.created_at.strftime("%Y-%m-%d")}
                   Added on #{listing.created_at.strftime("%B %d")}
 
-          .list-item-secondary-wrap
-            %a.btn.btn-round.btn-white.btn-transparent{:href => ""} Load More Jobs
-
+          .list-item-secondary-wrap{:style=>@jobs.count == @per_page ?  "text-align:right;" : "text-align:left;"}
+            - if @page-1 >= 1
+              %a.btn.btn-round.btn-white.btn-transparent{:href => "#{@page-1==1 ? "/" : "?page="+(@page-1).to_s}", :style=>@jobs.count == @per_page ? "float:left;" : "" }
+                %i.fa.fa-chevron-left
+                Last Page
+            - if @jobs.count == @per_page
+              %a.btn.btn-round.btn-white.btn-transparent{:href => "?page=#{@page+1}"}
+                Next Page
+                %i.fa.fa-chevron-right
 -# .list-item.list-item-callout
 -#   .list-item-main-info
 -#     %p.list-item-title Create a job alert
