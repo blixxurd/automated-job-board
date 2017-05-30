@@ -29,7 +29,7 @@
                   %a.list-item-tag.item-badge{:href => "/job/#{listing.slug}", :class=>listing.promoted ? 'job-type-part-time' : 'job-type-contract'} #{listing.company}
                   -# %span.list-item-company Alpha, Inc
               .list-item-secondary-info
-                %p.list-item-location HQ: #{listing.location}
+                %p.list-item-location HQ: #{listing.location || "Not Specified"}
                 %time.list-item-time{:datetime => listing.created_at.strftime("%Y-%m-%d")}
                   Added on #{listing.created_at.strftime("%B %d")}
 

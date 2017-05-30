@@ -21,16 +21,14 @@ class JobListing < ActiveRecord::Base
         self.create(r)
       end
     end
-    if service == 'craigslist'
-      results = scraper.craigslist('jjj', /remote|Remote/)
-      results.each do |r|
-        self.create(r)
-      end
+    if service == 'remoteok'
+      results = scraper.remoteok
+      self.create(results)
     end
   end
 
   def notify_the_world!
-    if self.active && !self.tweeted
+    if self.active && !self.tweeted && Rails.env.production?
       bitly_obj = Bitly.client.shorten("https://remotedigitaljobs.com/job/" + self.slug)
       @twitter = TwitterBandit.new()
       tweet = "Hiring remote #{self.job_title} @ #{bitly_obj.jmp_url} - #remotejobs #remotework #jobs #digitalmarketing"

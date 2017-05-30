@@ -31,7 +31,9 @@ class TwitterBandit
   end
 
   def tweet(content)
-    @twttr.update(content)
+    if Rails.env.production?
+      @twttr.update(content)
+    end
   end
 
   def client

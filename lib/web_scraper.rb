@@ -69,12 +69,27 @@ class WebScraper
 
   end
 
-  def remoteok(category)
+  def remoteok
+    #Also has stuff from weworkremotely
+    #Initial Grab
+    url = "https://remoteok.io/remote-marketing-jobs.json"
+    page = HTTParty.get(url)
+    results = JSON.parse page.body
+    final = []
 
-  end
+    results.each do |l|
+      final.push({
+          job_title: l["position"],
+          created_at: l["date"],
+          job_description: l["description"],
+          how_to_apply: l["url"],
+          company: l["company"],
+          source_id: l["id"],
+          active: true
+      })
+    end
 
-  def remoteok(category)
-
+    return final
   end
 
   def virtualvocations()
@@ -112,4 +127,4 @@ end
 
 # @scraper=WebScraper.new
 # # #@scraper.craigslist("jjj", /remote|Remote/)
-# # Pry.start(binding)
+# Pry.start(binding)
