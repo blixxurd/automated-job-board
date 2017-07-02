@@ -4,10 +4,10 @@ class TwitterBandit
 
   def initialize()
     @twttr = Twitter::REST::Client.new do |config|
-      config.consumer_key        = "cBQJhOQ5qzb2U56RkzwZNuXeM"
-      config.consumer_secret     = "egGpYk7vCpZkqnoHkJLsw1cAXO6e51N8vhODsF2x4HmbHe517U"
-      config.access_token        = "868618482471944192-x4HkGtX3YwycsvQ0OI0QurJtVZaykrl"
-      config.access_token_secret = "Vj7JZxhbWCgeFgQ2X5xITUdvwTQ0dBLnpab5h1fDFjz9n"
+      config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+      config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+      config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
     end
   end
 
