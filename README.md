@@ -22,11 +22,11 @@ This is an automated job board that crawls results from popular remote job sites
 * Create a cron job, and have it run `task.rb` on an interval of your choosing
 
 ## Environment Variables
-`DATABASE_URL` - The Postgres URL for your production DB. 
-`TWITTER_CONSUMER_KEY` - Twitter Consumer Key for Automated Tweets
-`TWITTER_CONSUMER_SECRET` - Twitter Consumer Secret for Automated Tweets
-`TWITTER_ACCESS_TOKEN` - Twitter Access Token for Automated Tweets
-`TWITTER_ACCESS_TOKEN_SECRET` - Twitter Access Token Secret for Automated Tweets
+* `DATABASE_URL` - The Postgres URL for your production DB. 
+* `TWITTER_CONSUMER_KEY` - Twitter Consumer Key for Automated Tweets
+* `TWITTER_CONSUMER_SECRET` - Twitter Consumer Secret for Automated Tweets
+* `TWITTER_ACCESS_TOKEN` - Twitter Access Token for Automated Tweets
+* `TWITTER_ACCESS_TOKEN_SECRET` - Twitter Access Token Secret for Automated Tweets
 
 
 ## Cron Setup
