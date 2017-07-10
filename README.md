@@ -4,8 +4,8 @@ This is an automated job board that crawls results from popular remote job sites
 
 ## Functionality Rundown
 * Cron job runs the `task.rb` file in the root directory on a schedule of your choice. 
-* New jobs are added to the apps database, and set to active. 
-* New jobs are automatically Tweeted to associated Twitter account.
+* New jobs are added to the apps database, and a bitly URL is generated.
+* New active jobs are automatically Tweeted to associated Twitter account.
 * Jobs can also be added/deleted/updated through the ActiveAdmin URL. 
 
 
@@ -27,6 +27,7 @@ This is an automated job board that crawls results from popular remote job sites
 * `TWITTER_CONSUMER_SECRET` - Twitter Consumer Secret for Automated Tweets
 * `TWITTER_ACCESS_TOKEN` - Twitter Access Token for Automated Tweets
 * `TWITTER_ACCESS_TOKEN_SECRET` - Twitter Access Token Secret for Automated Tweets
+* `BITLY_API_KEY` - Connects to bitly API to create a shortlink for automated sharing. Register a key with bitly. 
 
 
 ## Cron Setup
