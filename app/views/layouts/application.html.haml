@@ -6,6 +6,8 @@
     %meta{:content => "", :name => "description"}/
     %meta{:content => "", :name => "author"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "rvMYJHHT-ufYMyfRTn97wNSTQpaPVg1L1fFvLQu9tRk", :name => "google-site-verification"}/
+    %meta{:content => "9B415B7C533FEEFF51105207158238CF", :name => "msvalidate.01"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Lato:300,400,400i,700", :rel => "stylesheet"}/
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -17,6 +19,7 @@
 
       ga('create', 'UA-98839148-2', 'auto');
       ga('send', 'pageview');
+
   %body
     #page.mm-page.mm-slideout
       = render "pages/_includes/header"
