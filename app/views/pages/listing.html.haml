@@ -87,9 +87,16 @@
   "description" : "#{CGI::escapeHTML(desc_html.to_html)}",
   "datePosted" : "#{@listing.created_at.strftime("%Y-%m-%d")}",
   "validThrough" : "#{(@listing.created_at + 20.days).strftime("%Y-%m-%d")}",
-  "hiringOrganization" : {"@type" : "Organization","name" : "#{@listing.company}"}
+  "hiringOrganization" : {"@type" : "Organization","name" : "#{@listing.company}"},
+  "jobLocation" : {
+  "@type": "Place",
+  "address": {
+  "@type": "PostalAddress",
+  "addressCountry": "US"
   },
   "additionalProperty" : {
   "@type" : "PropertyValue",
   "value" : "TELECOMMUTE"
+  }
+  }
   }
