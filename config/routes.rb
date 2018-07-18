@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   get 'feed' => 'application#feed'
 
+  get 'sitemap.xml' => 'sitemap#index'
+  get 'sitemap/pages.xml' => 'sitemap#pages'
+  get 'sitemap/jobs.xml' => 'sitemap#jobs'
+
   # Posts
   post 'submit/lead' => "input#submit_lead"
 
