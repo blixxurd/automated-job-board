@@ -38,12 +38,12 @@
                     Added on #{listing.created_at.strftime("%B %d")}
 
           .list-item-secondary-wrap{:style=>@jobs.count == @per_page ?  "text-align:right;" : "text-align:left;"}
-            - if @page-1 >= 1
-              %a.btn.btn-round.btn-white.btn-transparent{:href => "#{@page-1==1 ? "/" : "?page="+(@page-1).to_s}", :style=>@jobs.count == @per_page ? "float:left;" : "" }
+            - if @curr_page-1 >= 1
+              %a.btn.btn-round.btn-white.btn-transparent{:href => "#{@curr_page-1==1 ? "/" : "?page="+(@curr_page-1).to_s}", :style=>@jobs.count == @per_page ? "float:left;" : "" }
                 %i.fa.fa-chevron-left
                 Last Page
             - if @jobs.count == @per_page
-              %a.btn.btn-round.btn-white.btn-transparent{:href => "?page=#{@page+1}"}
+              %a.btn.btn-round.btn-white.btn-transparent{:href => "?page=#{@curr_page+1}"}
                 Next Page
                 %i.fa.fa-chevron-right
 -# .list-item.list-item-callout

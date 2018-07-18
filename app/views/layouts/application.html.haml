@@ -1,14 +1,22 @@
+- avail_content = @page
+- suffix = field('Page Title Suffix')
+- suffix = field('Default Meta Tag')
+- meta_title = @seo ? @seo.meta_title : (avail_content ? avail_content.title + " " + suffix : "")
+- meta_desc = @seo ? @seo.meta_desc : ""
+- meta_additional = @seo ? @seo.meta_additional : ""
+
 !!!
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title=@seo_title
-    %meta{:content => "", :name => "description"}/
-    %meta{:content => "", :name => "author"}/
+    %title=@seo_title || meta_title
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
-    %meta{:content => "rvMYJHHT-ufYMyfRTn97wNSTQpaPVg1L1fFvLQu9tRk", :name => "google-site-verification"}/
-    %meta{:content => "9B415B7C533FEEFF51105207158238CF", :name => "msvalidate.01"}/
-    %link{:href => "https://fonts.googleapis.com/css?family=Lato:300,400,400i,700", :rel => "stylesheet"}/
+    %meta{:content => meta_desc, :name => "description"}/
+    = meta_additional.html_safe
+    = field('Global Meta')
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     :javascript

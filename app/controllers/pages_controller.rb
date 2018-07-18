@@ -3,9 +3,9 @@ class PagesController < ApplicationController
   before_action :register_globals!
 
   def index
-    @page = (params[:page] && params[:page]).to_i > 0 ? params[:page].to_i : 1
+    @curr_page = (params[:page] && params[:page]).to_i > 0 ? params[:page].to_i : 1
     @per_page = 25
-    @offset = (@page-1)*@per_page
+    @offset = (@curr_page-1)*@per_page
     @jobs = JobListing.where(active: 1).offset(@offset).order({ created_at: :desc }).limit(@per_page)
     @seo_title = "Remote Digital Marketing & Social Media Jobs - Remote Digital"
   end
