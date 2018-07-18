@@ -1,7 +1,6 @@
 = render "pages/_includes/hero"
 
 %main.main
-  = field "Homepage Banner"
   .container
     .row
       .col-xs-12
@@ -19,20 +18,24 @@
           -#           <a href="/job/#{listing.slug}">#{listing.job_title}</a> @ #{listing.company}
           -#         .medium-6.column.text-right
           -#           #{listing.created_at}
-          -@jobs.each do |listing, index|
-            .list-item{:class=>listing.promoted ? 'list-item-featured' : ''}
-              .list-item-main-info
-                -if listing.promoted
-                  %p.list-item-title-eyebrow Featured
-                %p.list-item-title
-                  %a{:href => "/job/#{listing.slug}"} #{listing.job_title}
-                .list-item-meta
-                  %a.list-item-tag.item-badge{:href => "/job/#{listing.slug}", :class=>listing.promoted ? 'job-type-part-time' : 'job-type-contract'} #{listing.company}
-                  -# %span.list-item-company Alpha, Inc
-              .list-item-secondary-info
-                %p.list-item-location HQ: #{listing.location || "Not Specified"}
-                %time.list-item-time{:datetime => listing.created_at.strftime("%Y-%m-%d")}
-                  Added on #{listing.created_at.strftime("%B %d")}
+          -@jobs.each_with_index do |listing, index|
+            - if index % 10 == 4 && field("Inline Banner").present?
+              .list-item{:class=>listing.promoted ? 'list-item-featured' : ''}
+                = field "Inline Banner"
+            - else 
+              .list-item{:class=>listing.promoted ? 'list-item-featured' : ''}
+                .list-item-main-info
+                  -if listing.promoted
+                    %p.list-item-title-eyebrow Featured
+                  %p.list-item-title
+                    %a{:href => "/job/#{listing.slug}"} #{listing.job_title}
+                  .list-item-meta
+                    %a.list-item-tag.item-badge{:href => "/job/#{listing.slug}", :class=>listing.promoted ? 'job-type-part-time' : 'job-type-contract'} #{listing.company}
+                    -# %span.list-item-company Alpha, Inc
+                .list-item-secondary-info
+                  %p.list-item-location HQ: #{listing.location || "Not Specified"}
+                  %time.list-item-time{:datetime => listing.created_at.strftime("%Y-%m-%d")}
+                    Added on #{listing.created_at.strftime("%B %d")}
 
           .list-item-secondary-wrap{:style=>@jobs.count == @per_page ?  "text-align:right;" : "text-align:left;"}
             - if @page-1 >= 1
