@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  def field(name)
+    f = @fields.find_by(name: name)
+    f ? f.data.html_safe : ""
+  end
+
   def markdown(text)
     options = {
       filter_html:     false,

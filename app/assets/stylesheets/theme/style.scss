@@ -1132,6 +1132,12 @@ button.mfp-close:hover, button.mfp-arrow:hover {
 	border-radius: 3px;
 	padding: 100px;
 	border-bottom: 2px solid rgba(233, 233, 233, 0.8);
+	&.page-wrap {
+		padding: 20px;
+		h1 {
+			margin-top:0;
+		}
+	}
 }
 
 .content-wrap-footer {

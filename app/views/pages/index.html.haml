@@ -1,6 +1,7 @@
 = render "pages/_includes/hero"
 
 %main.main
+  = field "Homepage Banner"
   .container
     .row
       .col-xs-12
@@ -18,7 +19,8 @@
           -#           <a href="/job/#{listing.slug}">#{listing.job_title}</a> @ #{listing.company}
           -#         .medium-6.column.text-right
           -#           #{listing.created_at}
-          -@jobs.each do |listing|
+          -@jobs.each do |listing, index|
+            = index
             .list-item{:class=>listing.promoted ? 'list-item-featured' : ''}
               .list-item-main-info
                 -if listing.promoted
