@@ -5,10 +5,10 @@ class SitemapController < ApplicationController
     def index
         render xml: "<sitemapindex xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
             <sitemap>
-            <loc>#{@site_url}/sitemaps/pages.xml</loc>
+            <loc>#{@site_url}/sitemap/pages.xml</loc>
             </sitemap>
             <sitemap>
-            <loc>#{@site_url}/sitemaps/jobs.xml</loc>
+            <loc>#{@site_url}/sitemap/jobs.xml</loc>
             </sitemap>
         </sitemapindex>"
     end

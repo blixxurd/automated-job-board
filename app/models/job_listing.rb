@@ -5,7 +5,7 @@ class JobListing < ActiveRecord::Base
   after_save :notify_the_world!
 
   scope :recent, -> {
-    where(created_at: 900.days.ago.midnight..Date.today.midnight)
+    where(created_at: 20.days.ago.midnight..Date.today.midnight)
   }
 
   def generate_details
