@@ -14,13 +14,20 @@ class SitemapController < ApplicationController
     end
 
     def pages
-        str = "<url>Pages</url>"
-        render xml: str
+        str = "<url><loc>#{@site_url + '/'}</loc><lastmod>#{Date.parse('July 18 2018').strftime('%m-%d-%Y')}</lastmod></url>"
+        render xml: "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>#{str}</urlset>"
     end
 
     def jobs
-        str = "<url>Jobs</url>"
-        render xml: str
+        str = ''
+        @jobs = JobListing.recent
+        @jobs.each do |job|
+            str << "<url>"
+            str << "<loc>#{@site_url + '/job/' + job.slug}</loc>"
+            str << "<lastmod>#{job.created_at.strftime('%m-%d-%Y')}</lastmod>"
+            str << "</url>"
+        end
+        render xml: "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>#{str}</urlset>"
     end
 
     private

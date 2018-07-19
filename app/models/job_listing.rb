@@ -4,6 +4,10 @@ class JobListing < ActiveRecord::Base
   before_create :generate_details
   after_save :notify_the_world!
 
+  scope :recent, -> {
+    where(created_at: 900.days.ago.midnight..Date.today.midnight)
+  }
+
   def generate_details
     self.slug = self.job_title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '') + "-" + (self.created_at.to_i/10000).to_s
   end
